@@ -1,0 +1,16 @@
+h3 {
+  margin: 0;
+  font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+pre {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+img {
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 20px;
+}

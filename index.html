@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Exif.js Test</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+
+        <img src="photo-1.jpg" id="img1" />
+        <h3>GPS</h3>
+        <pre id="justGps"></pre>
+        <H3>All Metadata</H3>
+        <pre id="allMetaDataSpan"></pre>
+
+        <script src="exif.js"></script>
+        <script>
+            window.onload=getExif;
+
+            function getExif() {
+                var img2 = document.getElementById("img1");
+                EXIF.getData(img2, function() {
+                    var allMetaData = EXIF.getAllTags(this);
+                    var justGps = document.getElementById("justGps");
+                    // Get Lat Long
+                    var latitude = EXIF.getTag(this, "GPSLatitude");
+                    var latitudeRef = EXIF.getTag(this, "GPSLatitudeRef");
+                    var longitude = EXIF.getTag(this, "GPSLongitude");
+                    var longitudeRef = EXIF.getTag(this, "GPSLongitudeRef");
+                    // Format Lat Long
+                    justGps.innerHTML = `${latitude[0]}°${latitude[1]}'${latitude[2]}"${latitudeRef}  ${longitude[0]}°${longitude[1]}'${longitude[2]}"${longitudeRef}`;
+                    // Show all meta data
+                    var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+                    allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\t");
+                });
+            }
+        </script>
+    </body>
+</html>
